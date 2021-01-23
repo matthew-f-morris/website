@@ -1,0 +1,53 @@
+.colour-nav {
+  background-color: rgba(250, 250, 250);
+}
+
+.name {
+  color: rgb(134, 53, 141);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  padding-left: 10px;
+  animation-delay: 2s;
+  animation-name: colourchange;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+body {
+  padding-top: 100px;
+}
+
+.image {
+  animation-delay: 2s;
+  animation-name: rotate;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+.nav {
+  color: rgb(134, 53, 141);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  padding-left: 10px;
+  animation-delay: 2s;
+  animation-name: colourchange;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+@keyframes rotate {
+  0% {transform: rotate(0deg); filter: hue-rotate(0deg);}
+  10% {transform: rotate(180deg); filter: hue-rotate(210deg) saturate(200%);}
+  50% {transform: rotate(180deg); filter: hue-rotate(210deg) saturate(200%);}
+  60% {transform: rotate(0deg); filter: hue-rotate(0deg);}
+}
+
+@keyframes colourchange {
+  0% {filter: hue-rotate(0deg);}
+  10% {filter: hue-rotate(210deg) saturate(200%);}
+  50% {filter: hue-rotate(210deg) saturate(200%);}
+  60% {filter: hue-rotate(0deg);}
+}

@@ -1,13 +1,14 @@
-import LoginPage from './components/login/Login.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './components/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <LoginPage />
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes />
+      </div>
+    </Router>
   );
 }
 
