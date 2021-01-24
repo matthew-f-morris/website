@@ -1,11 +1,21 @@
 .card {
   max-width: 100%;
+
+}
+
+.card:hover > .card-img {
+  filter: opacity(15%); 
 }
 
 .card-header {
   font-size: 20px;
   padding: 5px;
   display: flex;
+}
+
+.card-img {
+  transition: 0.1s;
+  filter: opacity(30%);
 }
 
 .title {
@@ -18,6 +28,7 @@
   flex: 1;
   display: flex;
   width: 20%;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   border-left: 1px solid lightgray;
@@ -25,4 +36,7 @@
   bottom: 0%
 } 
 
+@keyframes select {
+  100% {filter: opacity(5%);}
+}
 

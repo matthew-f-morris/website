@@ -3,15 +3,10 @@
 }
 
 .name {
-  color: rgb(134, 53, 141);
+  color: black;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 25px;
   padding-left: 10px;
-  animation-delay: 2s;
-  animation-name: colourchange;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease;
 }
 
 body {

@@ -11,16 +11,17 @@ const uiConfig = {
   signInFlow: 'popup',
   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
   credentialHelper: 'none',
-  signInSuccessUrl: '/'
+  signInSuccessUrl: '/home'
 };
 
 function LoginPage() {
 
   const [isSignedIn, setSignedIn] = useState(false);
-
+  w
   useEffect(() => {
     const unregisterAuthbserver = firebase.auth().onAuthStateChanged(user => {
-      setSignedIn(!!user);
+      setSignedIn(!!user); s
+      console.log("you signed in!");
     });
     return () => unregisterAuthbserver();
   }, []);
