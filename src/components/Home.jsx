@@ -1,37 +1,52 @@
 import React, { useState } from 'react';
-import Navbar from './navbar/Navbar';
 import Container from 'react-bootstrap/Container';
 import HomeCard from './homecard/HomeCard';
-import CardColumns from 'react-bootstrap/CardColumns';
+import { Row, Col } from 'react-bootstrap';
+import { StoreContext } from '../store';
+import { useHistory } from 'react-router-dom';
 
 function Home() {
+  const history = useHistory();
+  const { state } = React.useContext(StoreContext);
+  console.log("test ", state.user)
 
-  const cards = Array(10).fill({
-    id: 0,
-    title: 'Hello',
-    text: 'Help meeeee!'
-  })
+  if (!state.user) history.push("/login");
+
+  const [cards, setCards] = useState(() => {
+    const temp = [];
+    for (let i = 0; i < 10; i++) {
+      temp.push({
+        id: i,
+        title: 'Hello',
+        text: i
+      })
+    }
+
+    return temp;
+  });
 
   const remove = (id) => {
-    console.log("here");
-    var newList = [...list];
+    var newList = [...cards];
     newList.splice(id, 1);
-    setList(newList);
+    setCards(newList);
   }
-
-  console.log(cards);
-  const initlist = cards.map((card) => <HomeCard key={card.id++} title={card.title} text={card.text} handleClick={remove} />)
-  const [list, setList] = useState(initlist);
-
-
 
   return (
     <div>
-      <Navbar />
       <Container>
-        <CardColumns>
-          {list}
-        </CardColumns>
+        <Row>
+          {cards.length > 0
+            ? cards.map((card, idx) => (
+              <Col xs={12} md={4} key={card.id}>
+                <HomeCard
+                  title={card.title}
+                  text={card.text}
+                  handleClick={() => remove(idx)}
+                />
+              </Col>))
+            : <div>{"8======> --"}</div>
+          }
+        </Row>
       </Container>
     </div>
   );
