@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import HomeCard from './homecard/HomeCard';
+import HomeCard from '../homecard/HomeCard';
 import { Row, Col } from 'react-bootstrap';
-import { StoreContext } from '../store';
+import { StoreContext } from '../../store';
 import { useHistory } from 'react-router-dom';
+import './Home.css';
+import homepage from '../../images/homepage.png';
 
 function Home() {
   const history = useHistory();
   const { state } = React.useContext(StoreContext);
-  console.log("test ", state.user)
 
   if (!state.user) history.push("/login");
 
@@ -21,7 +22,6 @@ function Home() {
         text: i
       })
     }
-
     return temp;
   });
 
@@ -32,22 +32,22 @@ function Home() {
   }
 
   return (
-    <div>
-      <Container>
-        <Row>
-          {cards.length > 0
-            ? cards.map((card, idx) => (
-              <Col xs={12} md={4} key={card.id}>
+    <div className="page">
+      <div className="bg">
+        <Container fluid={true} >
+          <Row >
+            {cards.map((card, idx) => (
+              <Col xs={12} md={3} key={idx}>
                 <HomeCard
                   title={card.title}
                   text={card.text}
                   handleClick={() => remove(idx)}
                 />
-              </Col>))
-            : <div>{"8======> --"}</div>
-          }
-        </Row>
-      </Container>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </div >
     </div>
   );
 }
