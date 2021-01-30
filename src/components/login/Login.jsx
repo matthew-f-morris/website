@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import './Login.css';
+import './Firebase.css';
 
 const uiConfig = {
   signInFlow: 'popup',
-  signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+  signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID, { requireDisplayName: true }],
   credentialHelper: 'none',
   signInSuccessUrl: '/#/home'
 };
@@ -12,9 +14,7 @@ const uiConfig = {
 function LoginPage() {
 
   return (
-    <div>
-      <h1>My App</h1>
-      <p>Please sign-in:</p>
+    <div className="page">
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </div>
   );

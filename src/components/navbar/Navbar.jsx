@@ -1,28 +1,39 @@
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../images/toggle.svg';
 import './Navbar.css';
+import { StoreContext } from '../../store';
 
-function navbar() {
+function AppNavbar() {
+
+  const { state } = React.useContext(StoreContext);
+  console.log(state.user);
+
   return (
     <Navbar className="colour-nav" fixed="top">
-      <Navbar.Brand href="/#/home">
+      <Navbar.Brand className="brand" {... (state.user) ? { href: "/#/home" } : {}}>
         <img
           alt=""
           src={logo}
-          width="50"
-          height="50"
+          width="80"
+          height="80"
           className="image"
-        /><span className="name"> Toggle </span>
+        /><span className="name">Toggle</span>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
         <Nav variant="pills">
           <Nav.Item >
-            <Nav.Link href="/#/login">Login</Nav.Link>
+            <Nav.Link href="/#/home"><span id="txt">Home</span></Nav.Link>
           </Nav.Item>
           <Nav.Item >
-            <Nav.Link href="/#/login">Create New Item</Nav.Link>
+            {
+              (state.user) ?
+                <Nav.Link disabled href="/#/login"><span id="txt-disabled">Login</span></Nav.Link>
+                :
+                <Nav.Link href="/#/login"><span id="txt">Login</span></Nav.Link>
+            }
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
@@ -30,4 +41,4 @@ function navbar() {
   )
 }
 
-export default navbar;
+export default AppNavbar;

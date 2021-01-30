@@ -1,0 +1,13 @@
+.firebaseui-container {
+  background: rgba(0, 0, 0, 0.05);
+  min-height: 150px;
+  min-width: 400px;
+  border-radius: 5px;
+}
+
+#firebaseui_container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

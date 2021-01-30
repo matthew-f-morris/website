@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import Home from './home/Home';
-import LoginPage from './Login';
+import LoginPage from './login/Login';
 import nonce from '../images/nonce.png';
 
 export default () => (

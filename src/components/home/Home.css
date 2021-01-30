@@ -1,11 +1,14 @@
-[class^="col"] {
+@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+
+.main-row > *{
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-.row {
-  padding-left: 15px;
-  padding-right: 15px;
+.main-row {
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .page {
@@ -13,12 +16,16 @@
   min-height: 100%;
 }
 
-.bg {
-    background-image: url('../../images/homepage.png');
-    background-size: cover;
-    flex: 1;
+.display-user {
+  text-align: center;
+  padding-top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 15px;
+  color: white;
+  font-family: 'Overpass', sans-serif;
+  font-size: 20px;
 }
-  
 
 
 

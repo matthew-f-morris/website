@@ -4,8 +4,8 @@ import HomeCard from '../homecard/HomeCard';
 import { Row, Col } from 'react-bootstrap';
 import { StoreContext } from '../../store';
 import { useHistory } from 'react-router-dom';
+import firebase from 'firebase';
 import './Home.css';
-import homepage from '../../images/homepage.png';
 
 function Home() {
   const history = useHistory();
@@ -33,21 +33,22 @@ function Home() {
 
   return (
     <div className="page">
-      <div className="bg">
-        <Container fluid={true} >
-          <Row >
-            {cards.map((card, idx) => (
-              <Col xs={12} md={3} key={idx}>
-                <HomeCard
-                  title={card.title}
-                  text={card.text}
-                  handleClick={() => remove(idx)}
-                />
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </div >
+      <Container fluid={true} >
+        <Row>
+          <Col className="display-user">Hi {firebase.auth().currentUser.email}</Col>
+        </Row>
+        <Row className="main-row">
+          {cards.map((card, idx) => (
+            <Col xs={12} md={3} key={idx}>
+              <HomeCard
+                title={card.title}
+                text={card.text}
+                handleClick={() => remove(idx)}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </div>
   );
 }
