@@ -3,7 +3,7 @@
 }
 
 .card:hover > .card-img {
-  filter: opacity(15%); 
+  filter: opacity(0%); 
 }
 
 .card-header {
@@ -14,7 +14,7 @@
 
 .card-img {
   transition: 0.1s;
-  filter: opacity(30%);
+  filter: opacity(25%) saturate(150%) hue-rotate(-50deg);
 }
 
 .title {
@@ -34,8 +34,4 @@
   top: 50%;
   bottom: 0%
 } 
-
-@keyframes select {
-  100% {filter: opacity(5%);}
-}
 

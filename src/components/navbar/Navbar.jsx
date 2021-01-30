@@ -8,7 +8,6 @@ import { StoreContext } from '../../store';
 function AppNavbar() {
 
   const { state } = React.useContext(StoreContext);
-  console.log(state.user);
 
   return (
     <Navbar className="colour-nav" fixed="top">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import HomeCard from '../homecard/HomeCard';
 import { Row, Col } from 'react-bootstrap';
@@ -13,29 +13,28 @@ function Home() {
 
   if (!state.user) history.push("/login");
 
-  const [cards, setCards] = useState(() => {
-    const temp = [];
-    for (let i = 0; i < 10; i++) {
-      temp.push({
-        id: i,
-        title: 'Hello',
-        text: i
-      })
-    }
-    return temp;
-  });
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    let temp = [];
+    const onValueChange = firebase.database()
+      .ref('/list')
+      .on('value', snapshot => {
+        temp = snapshot.val();
+      });
+    setCards(temp);
+    return onValueChange;
+  }, [])
 
   const remove = (id) => {
-    var newList = [...cards];
-    newList.splice(id, 1);
-    setCards(newList);
+    firebase.database().ref('/list/' + id).remove();
   }
 
   return (
     <div className="page">
       <Container fluid={true} >
         <Row>
-          <Col className="display-user">Hi {firebase.auth().currentUser.email}</Col>
+          {firebase.auth().currentUser && <Col className="display-user">Hi {firebase.auth().currentUser.email}</Col>}
         </Row>
         <Row className="main-row">
           {cards.map((card, idx) => (
