@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import HomeCard from '../homecard/HomeCard';
+import AddCard from '../homecard/AddCard';
 import { Row, Col } from 'react-bootstrap';
 import { StoreContext } from '../../store';
 import { useHistory } from 'react-router-dom';
@@ -16,15 +17,14 @@ function Home() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    let temp = [];
-    const onValueChange = firebase.database()
-      .ref('/list')
-      .on('value', snapshot => {
-        temp = snapshot.val();
-      });
-    setCards(temp);
-    return onValueChange;
-  }, [])
+    const onValueChange = firebase.database().ref('/list');
+    onValueChange.on('value', snapshot => {
+      const temp = snapshot.val();
+      setCards(temp);
+    });
+
+    return () => onValueChange.off('value');
+  }, []);
 
   const remove = (id) => {
     firebase.database().ref('/list/' + id).remove();
@@ -46,6 +46,9 @@ function Home() {
               />
             </Col>
           ))}
+          <Col xs={12} md={3}>
+            <AddCard bsPrefix="add-card" handleClick={() => console.log("New Card")} />
+          </Col>
         </Row>
       </Container>
     </div>

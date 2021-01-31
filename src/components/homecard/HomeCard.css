@@ -35,3 +35,11 @@
   bottom: 0%
 } 
 
+.add {
+  max-width: 20%;
+  height: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
