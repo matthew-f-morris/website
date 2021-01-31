@@ -1,31 +1,18 @@
-.add-card-body {
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  filter: opacity(100%);
-}
-
 .add-card {
-  position: relative;
-  width: 50%;
-  height: 40%;  
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
-.add-img {
-  width: 100%;
-  height: 100%;
+.card-img {
+  filter: opacity(0%)
 }
 
 .button {
-  position: relative;
-  width: 50%;
-  height: 20%;  
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background:rgb(134, 53, 141);
+  justify-content: center;
+  background:rgb(68, 130, 172);
   border-color: rgb(255, 255, 255);
 }

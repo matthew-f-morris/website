@@ -18,6 +18,22 @@ function App() {
     return () => unregisterAuthObserver();
   }, [dispatch, state.firebaseApp]);
 
+  React.useEffect(() => {
+    if (state.user !== null) {
+      let unregisterChangeObserver = state.firebaseApp
+        .firestore()
+        .collection("cards")
+        .onSnapshot((snapshot) => {
+          let cards = [];
+          snapshot.forEach((doc) => {
+            cards = doc.data().data;
+          });
+          dispatch({ type: ActionType.SET_CARDS, payload: cards });
+        });
+      return unregisterChangeObserver;
+    }
+  }, [dispatch, state.firebaseApp, state.user]);
+
   return (
     <Router basename="/">
       <div className="App">

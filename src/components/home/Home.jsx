@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import HomeCard from '../homecard/HomeCard';
 import AddCard from '../homecard/AddCard';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, CardColumns } from 'react-bootstrap';
 import { StoreContext } from '../../store';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase';
@@ -14,45 +14,49 @@ function Home() {
 
   if (!state.user) history.push("/login");
 
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    const onValueChange = firebase.database().ref('/list');
-    onValueChange.on('value', snapshot => {
-      const temp = snapshot.val();
-      setCards(temp);
+  const add = () => {
+    let newCards = [...state.cards];
+    newCards.push({
+      text: 'please',
+      title: 'sucurnan',
+      id: Date.now()
     });
+    state.firebaseApp.firestore().collection("cards").doc('cardData').update({
+      data: newCards
+    });
+  }
 
-    return () => onValueChange.off('value');
-  }, []);
-
-  const remove = (id) => {
-    firebase.database().ref('/list/' + id).remove();
+  const remove = (idx) => {
+    let newCards = [...state.cards];
+    newCards.splice(idx, 1);
+    state.firebaseApp.firestore().collection("cards").doc('cardData').update({
+      data: newCards
+    });
   }
 
   return (
     <div className="page">
-      <Container fluid={true} >
-        <Row>
-          {firebase.auth().currentUser && <Col className="display-user">Hi {firebase.auth().currentUser.email}</Col>}
-        </Row>
-        <Row className="main-row">
-          {cards.map((card, idx) => (
-            <Col xs={12} md={3} key={idx}>
-              <HomeCard
-                title={card.title}
-                text={card.text}
-                handleClick={() => remove(idx)}
-              />
-            </Col>
-          ))}
-          <Col xs={12} md={3}>
-            <AddCard bsPrefix="add-card" handleClick={() => console.log("New Card")} />
-          </Col>
-        </Row>
-      </Container>
+      {firebase.auth().currentUser && <div className="display-user">Hi {firebase.auth().currentUser.email}</div>}
+      <CardColumns className="cols">
+        {state.cards.map((card, idx) => (
+          <HomeCard
+            key={idx}
+            title={card.title}
+            text={card.text}
+            handleClick={() => remove(idx)}
+          />
+        ))}
+        <AddCard handleClick={() => add()} />
+      </CardColumns>
+      {state.cards.length == 0 &&
+        <Button variant="light" className="single-add" onClick={() => add()}>Add New Card</Button>
+      }
     </div>
   );
 }
 
 export default Home;
+
+{/* <Row>
+{firebase.auth().currentUser && <Col className="display-user">Hi {firebase.auth().currentUser.email}</Col>}
+</Row> */}

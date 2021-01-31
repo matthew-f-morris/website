@@ -9,12 +9,10 @@ function homecard(props) {
     <Card>
       <Card.Img src={background} alt="Card image" />
       <Card.ImgOverlay>
-        <Card.Header>
-          <div className="title">{props.title}</div>
-          <div className="delete"><Button variant="danger" onClick={props.handleClick}>Delete</Button></div>
-        </Card.Header>
         <Card.Body>
+          <Card.Title>{props.title}</Card.Title>
           <Card.Text>{props.text}</Card.Text>
+          <Button variant="danger" onClick={props.handleClick}>Delete</Button>
         </Card.Body>
       </Card.ImgOverlay >
     </Card>
