@@ -1,35 +1,14 @@
-.card {
+.home-card {
   animation: fadeIn ease 0.2s;
-  max-width: 100%;
+  max-width: 30%;
 }
 
-.card:hover > .card-img {
-  filter: opacity(0%); 
+.home-card:hover { 
+  background-color: rgba(255,255,255, 0.9)
 }
 
-.card-img {
-  transition: 0.1s;
-  filter: opacity(25%) saturate(150%) hue-rotate(-50deg);
-}
-
-.delete {
-  flex: 1;
-  display: flex;
-  width: 20%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  border-left: 1px solid lightgray;
-  top: 50%;
-  bottom: 0%
-} 
-
-.add {
-  max-width: 20%;
-  height: 100%;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
+.card-columns .card {
+  margin-bottom: 25px;
 }
 
 @keyframes fadeIn {

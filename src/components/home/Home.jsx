@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
 import HomeCard from '../homecard/HomeCard';
-import AddCard from '../homecard/AddCard';
-import { Row, Col, Button, CardColumns } from 'react-bootstrap';
+import { Button, CardColumns } from 'react-bootstrap';
 import { StoreContext } from '../../store';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase';
@@ -37,7 +35,7 @@ function Home() {
   return (
     <div className="page">
       {firebase.auth().currentUser && <div className="display-user">Hi {firebase.auth().currentUser.email}</div>}
-      <CardColumns className="cols">
+      {state.cards.length !== 0 && <CardColumns className="cols">
         {state.cards.map((card, idx) => (
           <HomeCard
             key={idx}
@@ -46,8 +44,7 @@ function Home() {
             handleClick={() => remove(idx)}
           />
         ))}
-        <AddCard handleClick={() => add()} />
-      </CardColumns>
+      </CardColumns>}
       {state.cards.length == 0 &&
         <Button variant="light" className="single-add" onClick={() => add()}>Add New Card</Button>
       }
