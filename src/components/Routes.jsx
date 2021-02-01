@@ -5,8 +5,8 @@ import nonce from '../images/nonce.png';
 
 export default () => (
   <Switch>
-    <Route path="/home" exact component={Home} />
-    <Route path="/login" exact component={LoginPage} />
+    <Route path="/home" component={Home} />
+    <Route path="/login" component={LoginPage} />
     <Route component={() => <img src={nonce} />} />
   </Switch>
 )

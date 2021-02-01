@@ -35,7 +35,7 @@ function App() {
   }, [dispatch, state.firebaseApp, state.user]);
 
   return (
-    <HashRouter basename={process.env.PUBLIC_URL + '/'}>
+    <HashRouter basename='/'>
       <div className="App">
         <Navbar />
         <Routes />
