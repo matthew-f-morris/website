@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoreContext, ActionType } from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Routes from './components/Routes';
 import Navbar from './components/navbar/Navbar';
 import './App.css';
@@ -35,12 +35,12 @@ function App() {
   }, [dispatch, state.firebaseApp, state.user]);
 
   return (
-    <Router basename="/">
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Navbar />
         <Routes />
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 
